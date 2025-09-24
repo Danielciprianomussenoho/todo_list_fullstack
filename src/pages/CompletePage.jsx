@@ -91,10 +91,10 @@ const CompletePage = () => {
             </div>
 
               <h3 className={CT_CLASSES.emptyTitle}>
-                Nenhuma tarefa concluida ainda!
+                Nenhuma tarefa concluida ainda!!
               </h3>
               <p className={CT_CLASSES.emptyText}>
-                Complete algumas tarefas e elas irão aparecer aqui!
+                Complete algumas tarefas e elas irão aparecer aqui!!
               </p>
             </div>
         ): (
