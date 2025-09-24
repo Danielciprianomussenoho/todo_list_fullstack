@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import {BUTTONCLASSES, FIELDS, Inputwrapper, MESSAGE_ERROR, MESSAGE_SUCCESS} from "../assets/dummy"
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = 'http://localhost:5000'
 const INITIAL_FORM = {
   name: '',
   email: '',
@@ -40,11 +40,11 @@ const SignUp = ({onSwitchMode}) => {
           <UserPlus className='w-8 h-8 text-white' />
         </div>
         <h2 className='text-2xl font-bold text-gray-800'>Criar Conta</h2>
-        <p className='text-gray-500 text-sm mt-1'>Junte-se ao nosso aplicativo. Para Gerenciar Suas Tarefas.</p>
+        <p className='text-gray-500 text-sm mt-1'>Junte-se ao Anote ai. Para Gerenciar Suas Tarefas.</p>
       </div>
 
       {message.text && (
-        <div className={`message ${message.type === "success" ? MESSAGE_SUCCESS : MESSAGE_ERROR}`}>
+        <div className={message.type === "success" ? MESSAGE_SUCCESS : MESSAGE_ERROR}>
           {message.text}
         </div>
       )}

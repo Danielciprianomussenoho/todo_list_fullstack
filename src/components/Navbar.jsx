@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ChevronDown, ListTodo, LogOut, Settings } from 'lucide-react';
 
@@ -7,6 +7,16 @@ const Navbar = ({user = {}, onLogout}) => {
     const menuRef = useRef(null);
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+   const handleClickOutside = (event) => {
+      if(menuRef.current && !menuRef.current.contains(event.target)){
+         setMenuOpen(false)
+      }
+   }
+   document.addEventListener("mousedown", handleClickOutside)
+   return () => document.removeEventListener("mousedown", handleClickOutside)
+    },[])
 
     const handleMenuToggle = () => setMenuOpen((prev) => !prev);
 
@@ -27,7 +37,7 @@ const Navbar = ({user = {}, onLogout}) => {
                   <div className='absolute -bottom-1 -middle-1 w-3 h-3 bg-white rounded-full shadow-md animate-ping' />
                </div>
                {/* LOGO TEXT */}
-                  <span className=' text-2xl font-extrabold bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent tracking-wide'>Gerenciador de Tarefas</span>
+                  <span className=' text-2xl font-extrabold bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent tracking-wide'>Anota Aí </span>
             </div>
 
             {/* right side */}

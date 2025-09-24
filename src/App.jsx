@@ -8,11 +8,12 @@ import PendingPage from './pages/PendingPage';
 import CompletePage from './pages/CompletePage';
 import Profile from './components/Profile';
 
+
 const App = () => {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(() => {
     const stored = localStorage.getItem('currentUser');
-    return stored ? JSON.parse(stored) : null;
+    return stored ? JSON.parse(stored) : null
   });
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const App = () => {
 
   const ProtectedLayout = () => (
      <Layout user={currentUser}  onLogout={handleLogout} >
-       <Outlet />
+       <Outlet  />
      </Layout>
   );
 

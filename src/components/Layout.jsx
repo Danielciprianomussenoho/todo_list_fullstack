@@ -15,21 +15,21 @@ const Layout = ({onLogout, user}) => {
     setError(null);
     try {
       const token = localStorage.getItem('token');
-      if (!token) throw new Error ('Nenhum Token Encontrado.');
+      if (!token) throw new Error ('Nenhum Token Encontrado.'); 
 
       const {data} = await axios.get("http://localhost:5000/api/tasks/gp", {
-        headers: {
-          Authorization: `Bearer ${token}`}
+        headers: { Authorization: `Bearer ${token}`}
       });
 
+      console.log("tasks",data)
       const arr = Array.isArray(data) ? data : 
       Array.isArray(data?.tasks) ? data.tasks :
-      Array.isArray(data?.data) ? data.data : [];
+      Array.isArray(data?.data) ? data.data : []
       setTasks(arr);
     } catch (err) {
       console.error('Error fetching tasks:', err);
       setError(err.message || 'Erro ao buscar tarefas.');
-      if (err.response?.status === 401)  onLogout();
+      if (err.response?.status === 401)  onLogout()
     } finally {
       setLoading(false);
     }
@@ -46,10 +46,10 @@ const Layout = ({onLogout, user}) => {
       (typeof t.completed === 'string' && t.completed.toLowerCase() === 'yes')
     ).length
     
-    const totalCount = tasks.length;
-    const pendingCount = totalCount - completedTasks;
+    const totalCount = tasks.length
+    const pendingCount = totalCount - completedTasks
     const completionPercentage = totalCount  ? 
-    Math.random((completedTasks / totalCount) * 100) : 0;
+    Math.round((completedTasks / totalCount) * 100) : 0;
 
     return {
         totalCount,
@@ -120,7 +120,7 @@ const Layout = ({onLogout, user}) => {
                 <StatCard title='Total de Tarefas' value={status.totalCount} icon={<Circle className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500' />} />
                 <StatCard title='Tarefas Concluídas' value={status.completedTasks} icon={<Circle className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500' />}  />
                 <StatCard title='Tarefas Pendentes' value={status.pendingCount} icon={<Circle className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500' />}  />
-                <StatCard title='Taxa de Conclusão' value={`${status.completionPercentage}%`} icon={<Zap className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500' />}  />
+                <StatCard title='Taxa de Conclusão' value={`${status.completionPercentage} %`} icon={<Zap className='w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-500' />}  />
               </div>
 
               <hr className='my-3 sm:my-4 border-purple-100'/>
@@ -132,7 +132,7 @@ const Layout = ({onLogout, user}) => {
                     Status de Conclusão
                   </span>
                   <span className='text-sm bg-purple-100 text-purple-700 px-1.5 py-0.5 rounded-full sm:px-2'>
-                    {status.completionPercentage}/{status.totalCount}
+                    {status.completedTasks}/{status.totalCount}
                   </span>
                 </div>
                 
@@ -157,7 +157,7 @@ const Layout = ({onLogout, user}) => {
                   <div key={task._id || task.id} className='flex items-center justify-between p-2 sm:p-3 hover:bg-purple-50/50 rounded-lg border border-transparent transition-colors duration-200 hover:border-purple-100'>
                     <div className='flex-1 min-w-0'>
                       <p className='text-sm  font-medium text-gray-700 break-words whitespace-normal'>{task.title}</p>
-                      <p className='text-xs text-gray-500 mt-0.5'>{task.createdAt ? new Date(task.createdAt).toLocaleDateString(0) : 'Data desconhecida'}</p>
+                      <p className='text-xs text-gray-500 mt-0.5'>{task.createdAt ? new Date(task.createdAt).toLocaleDateString() : 'Data desconhecida'}</p>
                     </div>
 
                     <span className={`px-2 py-1 text-xs shrink-0 ml-2 rounded-full ${task.completed ? "bg-green-100 text-green-700" : "bg-fuchsia-100 text-fuchsia-700"}`}>
@@ -185,4 +185,4 @@ const Layout = ({onLogout, user}) => {
   )
 }
 
-export default Layout //217 estilizaçaõ
+export default Layout 

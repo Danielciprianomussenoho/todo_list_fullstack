@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const API_URL = "http://localhost:5000";
 
-const Profile = ({ user, setCurrentUser, onLogout }) => {
+const Profile = ({setCurrentUser, onLogout }) => {
     const [profile, setProfile] = useState({name: '', email: ''});
     const [password, setPassword] = useState({current: '', new: '', confirm: ''});
 
@@ -19,11 +19,7 @@ const Profile = ({ user, setCurrentUser, onLogout }) => {
         const token = localStorage.getItem('token');
 
         if (!token) return
-        axios.get(`${API_URL}/api/user/me`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
+        axios.get(`${API_URL}/api/user/me`, { headers: { Authorization: `Bearer ${token}`}})
         .then(({data}) => {
             if(data.success)
             setProfile({name: data.user.name, email: data.user.email})
@@ -42,7 +38,7 @@ const Profile = ({ user, setCurrentUser, onLogout }) => {
             const {data} = await axios.put(
                 `${API_URL}/api/user/profile`, 
                { name: profile.name, email: profile.email},
-            { headers: { 'Authorization': `Bearer ${token}` }}
+            { headers: { Authorization: `Bearer ${token}` }}
             );
             if(data.success){
                 setCurrentUser((prev) => ({ 
@@ -53,7 +49,7 @@ const Profile = ({ user, setCurrentUser, onLogout }) => {
                 toast.success('Perfil atualizado com sucesso');
             } else toast.error(data.message);
         } catch (err) {
-            toast.error(err.response?.data.message || 'Erro ao atualizar perfil');
+            toast.error(err.response?.data?.message || 'Erro ao atualizar perfil');
         }
     };
 
@@ -69,14 +65,14 @@ const Profile = ({ user, setCurrentUser, onLogout }) => {
             const {data} = await axios.put(
                 `${API_URL}/api/user/password`, 
                 { currentPassword: password.current, newPassword: password.new},
-                { headers: { 'Authorization': `Bearer ${token}` }}
+                { headers: { Authorization: `Bearer ${token}` }}
             );
             if(data.success){
                 toast.success('Senha alterada com sucesso');
                 setPassword({current: '', new: '', confirm: ''});
             } else toast.error(data.message);
         } catch (err) {
-            toast.error(err.response?.data.message || 'Erro ao alterar senha');
+            toast.error(err.response?.data?.message || 'Erro ao alterar senha');
         }
     };
 

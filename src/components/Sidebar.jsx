@@ -5,12 +5,12 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = ({user, tasks}) => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [showModal, setShowModal] = useState(false);
 
   const totalTasks = tasks?.length || 0;
   const completedTasks = tasks?.filter((t) => t.completed).length || 0; 
   const productivity = totalTasks > 0 
-  ? Math.round(completedTasks / totalTasks) * 100 : 0;
+    ? Math.round((completedTasks / totalTasks) * 100 )
+    : 0
 
   const userName = user?.name || "User";
   const initial = userName.charAt(0).toUpperCase();
@@ -65,7 +65,8 @@ const Sidebar = ({user, tasks}) => {
               <span className={PRODUCTIVITY_CARD.badge}>{productivity}%</span>
             </div>
             <div className={PRODUCTIVITY_CARD.barBg}>
-              <div className={PRODUCTIVITY_CARD.barFg} style={{ width: `${productivity}%` }}/>                  
+              <div className={PRODUCTIVITY_CARD.barFg} 
+                style={{ width: `${productivity}%` }}/>                  
             </div>
           </div>
 
@@ -81,9 +82,9 @@ const Sidebar = ({user, tasks}) => {
                 <div>
                   <h3 className={TIP_CARD.title}>Dica de Produtividade</h3>
                   <p className={TIP_CARD.text}>Use atalhos de teclado para aumentar sua produtividade!</p>
-                  <a href="https://hexagondigitalservices.com"
+                  <a href="https://danielcipriano-portfolio-xi.vercel.app"
                   target='_blank' className='block mt-2 text-sm text-purple-500 hover:underline '
-                  >Visite Hexagon Digital Services</a>
+                  >Visite o meu portfolio</a>
                 </div>
               </div>
             </div>

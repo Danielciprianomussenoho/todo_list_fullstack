@@ -179,21 +179,21 @@ export const LABEL_CLASS = "text-xs text-gray-500 truncate"
 
 // Stats definitions
 export const STATS = [
-    { key: "total", label: "Total Tasks", icon: HomeIcon, iconColor: "bg-purple-100 text-purple-600", valueKey: "total", gradient: true },
-    { key: "lowPriority", label: "Low Priority", icon: Flame, iconColor: "bg-green-100 text-green-600", borderColor: "border-green-100", valueKey: "lowPriority", textColor: "text-green-600" },
-    { key: "mediumPriority", label: "Medium Priority", icon: Flame, iconColor: "bg-orange-100 text-orange-600", borderColor: "border-orange-100", valueKey: "mediumPriority", textColor: "text-orange-600" },
-    { key: "highPriority", label: "High Priority", icon: Flame, iconColor: "bg-red-100 text-red-600", borderColor: "border-red-100", valueKey: "highPriority", textColor: "text-red-600" },
+    { key: "total", label: "Todas as Tarefas", icon: HomeIcon, iconColor: "bg-purple-100 text-purple-600", valueKey: "total", gradient: true },
+    { key: "lowPriority", label: "Baixa prioridade", icon: Flame, iconColor: "bg-green-100 text-green-600", borderColor: "border-green-100", valueKey: "lowPriority", textColor: "text-green-600" },
+    { key: "mediumPriority", label: "Media prioridade", icon: Flame, iconColor: "bg-orange-100 text-orange-600", borderColor: "border-orange-100", valueKey: "mediumPriority", textColor: "text-orange-600" },
+    { key: "highPriority", label: "Alta prioridade", icon: Flame, iconColor: "bg-red-100 text-red-600", borderColor: "border-red-100", valueKey: "highPriority", textColor: "text-red-600" },
 ]
 
 // Filter options
 export const FILTER_OPTIONS = ["all", "today", "week", "high", "medium", "low"]
 export const FILTER_LABELS = {
-    all: "All Tasks",
-    today: "Today's Tasks",
-    week: "This Week",
-    high: "High Priority",
-    medium: "Medium Priority",
-    low: "Low Priority",
+    all: "Todas as Tarefas",
+    today: "Tarefas de Hoje",
+    week: "Esta Semana",
+    high: "Alta Prioridade",
+    medium: "Media Prioridade",
+    low: "Baixa Prioridade",
 }
 
 // Empty state
@@ -214,9 +214,9 @@ export const TAB_INACTIVE = "text-gray-600 hover:bg-purple-100/50"
 
 // COMPLETE TASK
 export const SORT_OPTIONS = [
-    { id: "newest", label: "Newest", icon: <SortDesc className="w-3 h-3" /> },
-    { id: "oldest", label: "Oldest", icon: <SortAsc className="w-3 h-3" /> },
-    { id: "priority", label: "Priority", icon: <Award className="w-3 h-3" /> },
+    { id: "newest", label: "Recente", icon: <SortDesc className="w-3 h-3" /> },
+    { id: "oldest", label: "Antigo", icon: <SortAsc className="w-3 h-3" /> },
+    { id: "priority", label: "Prioridade", icon: <Award className="w-3 h-3" /> },
 ]
 
 // CSS class groups
@@ -263,8 +263,8 @@ export const layoutClasses = {
 // TASK ITEM
 // Menu options for task actions
 export const MENU_OPTIONS = [
-    { action: "edit", label: "Edit Task", icon: <Edit2 size={14} className="text-purple-600" /> },
-    { action: "delete", label: "Delete Task", icon: <Trash2 size={14} className="text-red-600" /> },
+    { action: "edit", label: "Editar Tarefa", icon: <Edit2 size={14} className="text-purple-600" /> },
+    { action: "delete", label: "Deletar Tarefa", icon: <Trash2 size={14} className="text-red-600" /> },
 ]
 
 // CSS class groups for TaskItem
