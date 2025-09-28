@@ -4,9 +4,8 @@ import { toast, ToastContainer } from 'react-toastify'
 import { BACK_BUTTON, DANGER_BTN, FULL_BUTTON, INPUT_WRAPPER, personalFields, SECTION_WRAPPER, securityFields } from '../assets/dummy';
 import { ChevronLeft, Lock, LogOut, Save, Shield, UserCircle } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE } from "../config/api";
 
-
-const API_URL = "http://localhost:5000";
 
 const Profile = ({setCurrentUser, onLogout }) => {
     const [profile, setProfile] = useState({name: '', email: ''});
@@ -19,7 +18,7 @@ const Profile = ({setCurrentUser, onLogout }) => {
         const token = localStorage.getItem('token');
 
         if (!token) return
-        axios.get(`${API_URL}/api/user/me`, { headers: { Authorization: `Bearer ${token}`}})
+        axios.get(`${API_BASE}/api/user/me`, { headers: { Authorization: `Bearer ${token}`}})
         .then(({data}) => {
             if(data.success)
             setProfile({name: data.user.name, email: data.user.email})
@@ -36,7 +35,7 @@ const Profile = ({setCurrentUser, onLogout }) => {
         try {
             const token = localStorage.getItem('token');
             const {data} = await axios.put(
-                `${API_URL}/api/user/profile`, 
+                `${API_BASE}/api/user/profile`, 
                { name: profile.name, email: profile.email},
             { headers: { Authorization: `Bearer ${token}` }}
             );
@@ -63,7 +62,7 @@ const Profile = ({setCurrentUser, onLogout }) => {
         try {
             const token = localStorage.getItem('token');
             const {data} = await axios.put(
-                `${API_URL}/api/user/password`, 
+                `${API_BASE}/api/user/password`, 
                 { currentPassword: password.current, newPassword: password.new},
                 { headers: { Authorization: `Bearer ${token}` }}
             );

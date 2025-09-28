@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { baseControlClasses, DEFAULT_TASK, priorityStyles } from '../assets/dummy'
 import { AlignLeft, Calendar, CheckCircle, Flag, PlusCircle, Save, X } from 'lucide-react';
 
-const API_BASE = "http://localhost:5000/api/tasks"
+const API_BASE = "https://todolistapi-4f.up.railway.app/api/tasks"
 
 const TaskModal = ({isOpen, onClose, taskToEdit, onSave, onLogout}) => {
     const [taskData, setTaskData] = useState(DEFAULT_TASK);

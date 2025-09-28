@@ -7,8 +7,8 @@ import { useOutletContext } from 'react-router-dom'
 import TaskItem from '../components/TaskItem'
 import axios from 'axios'
 import TaskModal from '../components/TaskModal'
+import { API_BASE } from "../config/api";
 
-const API_BASE = "http://localhost:5000/api/tasks"
 
 const Dashboard = () => {
 

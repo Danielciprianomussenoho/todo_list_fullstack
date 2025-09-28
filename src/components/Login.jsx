@@ -4,6 +4,7 @@ import {toast, ToastContainer} from "react-toastify"
 import {BUTTON_CLASSES, INPUTWRAPPER} from "../assets/dummy"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE } from "../config/api";
 
 const INITIAL_FORM = { email: '',  password: ''};
 
@@ -14,8 +15,7 @@ const Login = ({onSubmit, onSwitchMode}) => {
   const [rememberMe, setRememberMe] = useState(false);
   
   const navigate = useNavigate()
-  const url = 'http://localhost:5000';
-
+ 
   useEffect(() => {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
@@ -23,7 +23,7 @@ const Login = ({onSubmit, onSwitchMode}) => {
     if (token) {
       (async () => {
         try {
-          const { data } = await axios.get(`${url}/api/user/me`, {
+          const { data } = await axios.get(`${API_BASE}/api/user/me`, {
             headers: { Authorization: `Bearer ${token}` }
           });
 
@@ -50,7 +50,7 @@ const Login = ({onSubmit, onSwitchMode}) => {
     setLoading(true);
 
     try {
-      const {data} = await axios.post(`${url}/api/user/login`, formData);
+      const {data} = await axios.post(`${API_BASE}/api/user/login`, formData);
       if(!data.token) throw new Error(data.message || 'Token não recebido. Login falhou.');
 
       localStorage.setItem('token', data.token);

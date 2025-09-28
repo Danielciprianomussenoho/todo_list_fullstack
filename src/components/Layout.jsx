@@ -4,6 +4,8 @@ import Sidebar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';
 import { Circle, Clock, TrendingUp, Zap } from 'lucide-react';
+import { API_BASE } from "../config/api";
+
 
 const Layout = ({onLogout, user}) => {
   const[tasks, setTasks] = useState([]);
@@ -16,12 +18,12 @@ const Layout = ({onLogout, user}) => {
     try {
       const token = localStorage.getItem('token');
       if (!token) throw new Error ('Nenhum Token Encontrado.'); 
-
-      const {data} = await axios.get("http://localhost:5000/api/tasks/gp", {
+      
+      const {data} = await axios.get(`${API_BASE}/api/tasks/gp`, {
         headers: { Authorization: `Bearer ${token}`}
       });
 
-      console.log("tasks",data)
+      console.log("dadooos",data)
       const arr = Array.isArray(data) ? data : 
       Array.isArray(data?.tasks) ? data.tasks :
       Array.isArray(data?.data) ? data.data : []
